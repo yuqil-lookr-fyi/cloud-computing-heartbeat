@@ -1,4 +1,0 @@
-msg_id,content,dismissable
-1,"Heart rate normal: 72 bpm",yes
-2,"Alert: Heart rate irregularity detected",no
-3,"Reminder: Schedule your next ECG",yes

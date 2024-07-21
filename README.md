@@ -15,7 +15,11 @@ curl -X DELETE http://100.28.74.221:5000/delete \
 -H "Content-Type: application/json" \
 -d '{"msg_ids": [2, 3]}'
 
+curl -X GET http://100.28.74.221:5000/read_all
+
 curl -X DELETE http://100.28.74.221:5000/delete \
 -H "Content-Type: application/json" \
 -d '{}'
+
+curl -X GET http://100.28.74.221:5000/read_all
 ```
