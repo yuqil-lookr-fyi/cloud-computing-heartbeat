@@ -1,15 +1,22 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import pandas as pd
 import random
 import uuid
 from datetime import datetime
 
 app = Flask(__name__)
+
+cors = CORS(app)
+app.config["CORS_HEADERS"] = "Content-Type"
+
+
 csv_file = "notifications.csv"
 
 
 # API to read the top 3 undismissable messages
 @app.route("/read_undismissable_messages", methods=["GET"])
+@cross_origin()
 def read_undismissable_messages():
     # Get the number of messages to return from the query parameter, defaulting to 3 if not provided
     top_n = request.args.get("top", default=3, type=int)
@@ -23,6 +30,7 @@ def read_undismissable_messages():
 
 # API to upsert a message
 @app.route("/upsert", methods=["POST"])
+@cross_origin()
 def upsert_message():
     msg_id = request.json["msg_id"]
     content = request.json["content"]
@@ -53,6 +61,7 @@ def upsert_message():
 
 # API to read all messages
 @app.route("/read_all", methods=["GET"])
+@cross_origin()
 def read_all_messages():
     df = pd.read_csv(csv_file)
     return jsonify(df.to_dict(orient="records"))
@@ -60,6 +69,7 @@ def read_all_messages():
 
 # API to generate a random new unread message
 @app.route("/generate_random", methods=["POST"])
+@cross_origin()
 def generate_random_message():
     msg_id = uuid.uuid4()
     content = f"Random Heartbeat Alert: {random.choice(['Normal', 'Irregular', 'High', 'Low'])} bpm"
@@ -84,6 +94,7 @@ def generate_random_message():
 
 # API to delete messages
 @app.route("/delete", methods=["DELETE"])
+@cross_origin()
 def delete_messages():
     msg_ids = request.json.get("msg_ids", None)
     df = pd.read_csv(csv_file)
@@ -102,6 +113,7 @@ def delete_messages():
 
 # API to toggle the dismissable status of a message by its ID
 @app.route("/toggle_dismissable", methods=["POST"])
+@cross_origin()
 def toggle_dismissable():
     msg_id = request.json["msg_id"]
 
