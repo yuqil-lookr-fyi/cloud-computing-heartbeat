@@ -36,8 +36,14 @@ def upsert_message():
         df.loc[index[0], "content"] = content
         df.loc[index[0], "dismissable"] = dismissable
     else:
+        timestamp = datetime.now().isoformat()  # Current timestamp in ISO 8601 format
         new_row = pd.DataFrame(
-            {"msg_id": [msg_id], "content": [content], "dismissable": [dismissable]}
+            {
+                "msg_id": [msg_id],
+                "content": [content],
+                "dismissable": [dismissable],
+                "timestamp": [timestamp],
+            }
         )
         df = pd.concat([df, new_row], ignore_index=True)
 
