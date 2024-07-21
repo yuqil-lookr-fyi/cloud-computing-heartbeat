@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import pandas as pd
+import random
 
 app = Flask(__name__)
 csv_file = "notifications.csv"
