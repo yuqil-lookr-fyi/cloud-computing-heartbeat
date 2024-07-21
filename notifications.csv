@@ -1,0 +1,4 @@
+msg_id,content,dismissable
+1,Welcome to our service!,no
+2,Your session will expire soon.,yes
+3,Check out our new features!,no
