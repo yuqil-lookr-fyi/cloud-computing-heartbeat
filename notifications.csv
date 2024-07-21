@@ -1,4 +1,4 @@
 msg_id,content,dismissable
-1,Welcome to our service!,no
-2,Your session will expire soon.,yes
-3,Check out our new features!,no
+1,"Heart rate normal: 72 bpm",yes
+2,"Alert: Heart rate irregularity detected",no
+3,"Reminder: Schedule your next ECG",yes
